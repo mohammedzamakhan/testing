@@ -1,0 +1,9 @@
+
+<mat-card>
+  <mat-card-content>
+      <b>Ticket Description:</b>
+      <p [ngClass]="{completed: ticket.completed}">
+        {{ticket.description}}
+      </p>
+    </mat-card-content>
+</mat-card>

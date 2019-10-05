@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+}
+
+form {
+  margin: 10px 34px 0;
+  display: flex;
+}
+
+form .spacer {
+  flex: 1;
+}
+
+mat-slide-toggle {
+  margin-top: 20px;
+}
+
+[mat-fab] {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}

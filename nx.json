@@ -1,0 +1,30 @@
+{
+  "npmScope": "ticketing-system",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "ticker-e2e": {
+      "tags": []
+    },
+    "ticker": {
+      "tags": []
+    },
+    "tickets": {
+      "tags": []
+    },
+    "shared": {
+      "tags": []
+    },
+    "ticket-details": {
+      "tags": []
+    },
+    "ticket-state": {
+      "tags": []
+    }
+  }
+}

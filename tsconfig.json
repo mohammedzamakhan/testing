@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ticketing-system/tickets": ["libs/tickets/src/index.ts"],
+      "@ticketing-system/shared": ["libs/shared/src/index.ts"],
+      "@ticketing-system/ticket-details": ["libs/ticket-details/src/index.ts"],
+      "@ticketing-system/ticket-state": ["libs/ticket-state/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

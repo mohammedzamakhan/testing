@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "projects": {
+    "ticker": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/ticker",
+      "sourceRoot": "apps/ticker/src",
+      "prefix": "ticketing-system",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ticker",
+            "index": "apps/ticker/src/index.html",
+            "main": "apps/ticker/src/main.ts",
+            "polyfills": "apps/ticker/src/polyfills.ts",
+            "tsConfig": "apps/ticker/tsconfig.app.json",
+            "aot": false,
+            "assets": ["apps/ticker/src/favicon.ico", "apps/ticker/src/assets"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/ticker/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ticker/src/environments/environment.ts",
+                  "with": "apps/ticker/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ticker:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ticker:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ticker:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ticker/tsconfig.app.json",
+              "apps/ticker/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ticker/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ticker/jest.config.js",
+            "tsConfig": "apps/ticker/tsconfig.spec.json",
+            "setupFile": "apps/ticker/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ticker-e2e": {
+      "root": "apps/ticker-e2e",
+      "sourceRoot": "apps/ticker-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ticker-e2e/cypress.json",
+            "tsConfig": "apps/ticker-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ticker:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ticker:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ticker-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ticker-e2e/**"]
+          }
+        }
+      }
+    },
+    "tickets": {
+      "projectType": "library",
+      "root": "libs/tickets",
+      "sourceRoot": "libs/tickets/src",
+      "prefix": "ticketing-system",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/tickets/tsconfig.lib.json",
+              "libs/tickets/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/tickets/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/tickets/jest.config.js",
+            "tsConfig": "libs/tickets/tsconfig.spec.json",
+            "setupFile": "libs/tickets/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared": {
+      "projectType": "library",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "ticketing-system",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/tsconfig.lib.json",
+              "libs/shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/jest.config.js",
+            "tsConfig": "libs/shared/tsconfig.spec.json",
+            "setupFile": "libs/shared/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "ticket-details": {
+      "projectType": "library",
+      "root": "libs/ticket-details",
+      "sourceRoot": "libs/ticket-details/src",
+      "prefix": "ticketing-system",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ticket-details/tsconfig.lib.json",
+              "libs/ticket-details/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ticket-details/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ticket-details/jest.config.js",
+            "tsConfig": "libs/ticket-details/tsconfig.spec.json",
+            "setupFile": "libs/ticket-details/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "ticket-state": {
+      "projectType": "library",
+      "root": "libs/ticket-state",
+      "sourceRoot": "libs/ticket-state/src",
+      "prefix": "ticketing-system",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ticket-state/tsconfig.lib.json",
+              "libs/ticket-state/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ticket-state/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ticket-state/jest.config.js",
+            "tsConfig": "libs/ticket-state/tsconfig.spec.json",
+            "setupFile": "libs/ticket-state/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "ticker"
+}
